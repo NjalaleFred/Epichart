@@ -12,11 +12,13 @@ import {
   CardBody,
   Text,
 } from "@chakra-ui/react";
+import { Navbar } from "./Navbar";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [user, setUser] = useState("")
   const [error, setError] = useState("");
 
   function handleLogin(e) {
@@ -33,7 +35,8 @@ export const Login = () => {
         if (data.error) {
           setError(data.error);
         } else {
-          history.push("/doctor");
+          setUser(data)
+          history.push(`/doctor/${data.doctor_id}`);
         }
       })
       .catch((error) => {
@@ -56,6 +59,8 @@ export const Login = () => {
           Log in
         </Heading>
       </CardHeader>
+
+      <Navbar user={user} />
 
       <CardBody>
         <div>
