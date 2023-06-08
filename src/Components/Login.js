@@ -17,7 +17,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const [setUser] = useState("")
+  const [user, setUser] = useState("")
   const [error, setError] = useState("");
 
   function handleLogin(e) {

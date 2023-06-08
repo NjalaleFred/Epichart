@@ -39,7 +39,7 @@ export const Signup = () => {
         if (data.error) {
           setError(data.error);
         } else {
-          history.push("/login");
+          history.push("/");
         }
       })
       .catch((error) => {

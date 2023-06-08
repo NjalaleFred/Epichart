@@ -17,8 +17,9 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 
-export const Patient = ({ doctor }) => {
+export const Patient = ({ doctor}) => {
   const [showForm, setShowForm] = useState(false);
+  const [updateFrom, setUpdateFrom] = useState(false)
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -29,6 +30,7 @@ export const Patient = ({ doctor }) => {
   const toggleForm = () => {
     setShowForm(!showForm);
   };
+
 
   const handleSubmit = () => {
     fetch("http://localhost:9292/patients", {
@@ -52,11 +54,8 @@ export const Patient = ({ doctor }) => {
       });
   };
 
-  function handleDelete(id) {
-    fetch(`http://localhost:9292/patients/${id}`, {
-      method: "DELETE",
-    });
-  }
+  
+
 
   const myPatientList = doctor.medical_records ? (
     <Table variant="striped">
@@ -84,19 +83,12 @@ export const Patient = ({ doctor }) => {
             <Td>{record.patient.age}</Td>
             <Td>{record.patient.gender}</Td>
             <Td>{record.patient.email}</Td>
-            <Td>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Button onClick={handleDelete} colorScheme="red">
-                  X
-                </Button>
-              </div>
-            </Td>
           </Tr>
         ))}
       </Tbody>
     </Table>
   ) : (
-    <p>No medical records found.</p>
+    <strong>No medical records found.</strong>
   );
 
   return (
