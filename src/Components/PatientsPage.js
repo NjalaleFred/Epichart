@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { CreatePatient } from "../CreatePatient";
 import {
   Table,
   Thead,
@@ -9,17 +9,11 @@ import {
   Td,
   Box,
   Button,
-  Input,
-  FormControl,
-  FormLabel,
-  Select,
   Image,
-  IconButton,
 } from "@chakra-ui/react";
 
-export const Patient = ({ doctor}) => {
+export const Patient = ({ doctor }) => {
   const [showForm, setShowForm] = useState(false);
-  const [updateFrom, setUpdateFrom] = useState(false)
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -30,7 +24,6 @@ export const Patient = ({ doctor}) => {
   const toggleForm = () => {
     setShowForm(!showForm);
   };
-
 
   const handleSubmit = () => {
     fetch("http://localhost:9292/patients", {
@@ -53,9 +46,6 @@ export const Patient = ({ doctor}) => {
         toggleForm(); // Hide the form after successful submission
       });
   };
-
-  
-
 
   const myPatientList = doctor.medical_records ? (
     <Table variant="striped">
@@ -97,62 +87,21 @@ export const Patient = ({ doctor}) => {
       <Button onClick={toggleForm} mt={4} colorScheme="teal">
         Create Patient
       </Button>
-      {showForm && (
-        <Box
-          mt={4}
-          p={4}
-          borderWidth="1px"
-          borderColor="gray.200"
-          borderRadius="md"
-        >
-          <FormControl isRequired mb={2}>
-            <FormLabel>Name</FormLabel>
-            <Input
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl isRequired mb={2}>
-            <FormLabel>Age</FormLabel>
-            <Input
-              placeholder="Age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-          </FormControl>
-          <FormControl isRequired mb={2}>
-            <FormLabel>Gender</FormLabel>
-            <Select
-              placeholder="Select gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </Select>
-          </FormControl>
-          <FormControl isRequired mb={2}>
-            <FormLabel>Phone Number</FormLabel>
-            <Input
-              placeholder="Phone Number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-          </FormControl>
-          <FormControl isRequired mb={2}>
-            <FormLabel>Email</FormLabel>
-            <Input
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FormControl>
-          <Button onClick={handleSubmit} colorScheme="teal" mt={4}>
-            Submit
-          </Button>
-        </Box>
-      )}
+      <CreatePatient
+        handleSubmit={handleSubmit}
+        showForm={showForm}
+        toggleForm={toggleForm}
+        name={name}
+        age={age}
+        gender={gender}
+        phoneNumber={phoneNumber}
+        email={email}
+        setName={setName}
+        setAge={setAge}
+        setGender={setGender}
+        setPhoneNumber={setPhoneNumber}
+        setEmail={setEmail}
+      />
     </Box>
   );
 };
