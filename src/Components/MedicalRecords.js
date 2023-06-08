@@ -1,21 +1,7 @@
 import React, { useState, useRef } from "react";
 import { MedicalChart } from "./MedicalChart";
-import {
-  Box,
-  Text,
-  FormControl,
-  FormLabel,
-  Button,
-  Input,
-  Heading,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
+import { UpdatePatient } from "./UpdatePatient";
+import { Box } from "@chakra-ui/react";
 
 export const MedicalRecords = ({ doctor }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,13 +24,13 @@ export const MedicalRecords = ({ doctor }) => {
 
   const handleUpdateRecord = (e) => {
     e.preventDefault();
-    if (recordId){
+    if (recordId) {
       fetch(`http://localhost:9292/records/${recordId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body:JSON.stringify({
+        body: JSON.stringify({
           medication: medication,
           treatment: treatment,
           vitals: vitals,
@@ -58,69 +44,23 @@ export const MedicalRecords = ({ doctor }) => {
     }
   };
 
- 
-
   return (
     <Box>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
+      <UpdatePatient
+        handleUpdateRecord={handleUpdateRecord}
+        initialRef={initialRef}
+        finalRef={finalRef}
+        setDiagnosis={setDiagnosis}
+        diagnosis={diagnosis}
+        setMedication={setMedication}
+        medication={medication}
+        setVitals={setVitals}
+        vitals={vitals}
+        setTreatment={setTreatment}
+        treatment={treatment}
+        handleClose={handleClose}
         isOpen={isOpen}
-        onClose={handleClose}
-      >
-        <ModalOverlay bg="transparent" />
-        <ModalContent>
-          <ModalHeader>Update Record</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <form onSubmit={(e) => handleUpdateRecord(e)}>
-              <FormControl isRequired>
-                <FormLabel>Diagnosis</FormLabel>
-                <Input
-                  type="text"
-                  value={diagnosis}
-                  onChange={(e) => setDiagnosis(e.target.value)}
-                />
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel>Treatment</FormLabel>
-                <Input
-                  type="text"
-                  value={treatment}
-                  onChange={(e) => setTreatment(e.target.value)}
-                />
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel>Medication</FormLabel>
-                <Input
-                  type="text"
-                  value={medication}
-                  onChange={(e) => setMedication(e.target.value)}
-                />
-              </FormControl>
-
-              <FormControl isRequired>
-                <FormLabel>Vitals</FormLabel>
-                <Input
-                  type="text"
-                  value={vitals}
-                  onChange={(e) => setVitals(e.target.value)}
-                />
-              </FormControl>
-
-              <Button type="submit" colorScheme="blue">
-                Update
-              </Button>
-            </form>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button onClick={handleClose}>Cancel</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      />
       <MedicalChart doctor={doctor} toggleForm={toggleForm} />
     </Box>
   );
