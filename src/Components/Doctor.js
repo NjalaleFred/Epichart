@@ -22,10 +22,10 @@ export const Doctor = () => {
 
   return (
     <Router>
-      <div className="App">
-        <nav>
+      <nav>
           <Navbar doctorId={params.id} />
         </nav>
+      <div className="App">
         <Switch>
           <Route exact path={`/doctor/${params.id}`}>
             <DoctorHomePage doctor={doctor} />
