@@ -11,7 +11,7 @@ export const Navbar = ({ doctorId }) => {
          boxSize="100px" 
          mr={3} 
          />
-         <Text fontSize="2xl" fontWeight="bold" fontFamily="sans-serif">
+         <Text fontSize="2xl" fontWeight="bold" fontFamily="serif">
           Epichart
         </Text>
         <Link as={NavLink} exact to={`/doctor/${doctorId}`} mx={2} activeClassName="active-link">
