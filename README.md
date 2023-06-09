@@ -7,6 +7,8 @@
 ## Working version 
 The site is deployed at "https://main--chimerical-dolphin-0476f0.netlify.app/"
 
+Here is the repo to my sinatra backend "https://github.com/NjalaleFred/phase-3-sinatra-react-project"
+
 
 ## Technologies used 
 1. React for the frontend
