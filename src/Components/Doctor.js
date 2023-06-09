@@ -18,7 +18,7 @@ export const Doctor = () => {
     })
       .then((resp) => resp.json())
       .then((data) => setDoctor(data));
-  }, [params.id, doctor.medical_records]);
+  }, [params.id]);
 
   return (
     <Router>

@@ -17,7 +17,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const [user, setUser] = useState("")
+  const [setUser] = useState("");
   const [error, setError] = useState("");
 
   function handleLogin(e) {
@@ -34,13 +34,17 @@ export const Login = () => {
         if (data.error) {
           setError(data.error);
         } else {
-          setUser(data)
+          setUser(data);
           history.push(`/doctor/${data.doctor_id}`);
         }
       })
       .catch((error) => {
         console.error("Signup request failed:", error);
       });
+  }
+
+  function handleDirect() {
+    history.push("/signup");
   }
 
   return (
@@ -60,36 +64,38 @@ export const Login = () => {
       </CardHeader>
 
       <CardBody>
-        <div>
-          <form onSubmit={handleLogin}>
-            <FormControl isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
+        <form onSubmit={handleLogin}>
+          <FormControl isRequired>
+            <FormLabel>Email address</FormLabel>
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                vaule={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormControl>
-            {error && (
-              <Text color="red.500" mb={4}>
-                {error}
-              </Text>
-            )}
-            <Button type="submit" colorScheme="blue">
-              Log in
-            </Button>
-          </form>
-        </div>
+          <FormControl isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              vaule={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          {error && (
+            <Text color="red.500" mb={4}>
+              {error}
+            </Text>
+          )}
+          <Button type="submit" colorScheme="blue">
+            Log in
+          </Button>
+        </form>
       </CardBody>
+      <p>
+        Don't have an account?
+        <Button onClick={handleDirect}>Signup</Button>
+      </p>
     </Card>
   );
 };

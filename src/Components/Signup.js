@@ -19,7 +19,7 @@ export const Signup = () => {
   const [error, setError] = useState("");
   const history = useHistory();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     fetch("http://localhost:9292/signup", {
@@ -46,6 +46,10 @@ export const Signup = () => {
         console.error("Signup request failed:", error);
       });
   };
+
+  function handleDirect() {
+    history.push("/");
+  }
 
   return (
     <Box
@@ -108,6 +112,10 @@ export const Signup = () => {
           Sign Up
         </Button>
       </form>
+      <p>
+        Already have an account?
+        <Button onClick={handleDirect}>Login</Button>
+      </p>
     </Box>
   );
 };

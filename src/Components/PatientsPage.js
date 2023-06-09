@@ -10,7 +10,7 @@ export const Patient = ({ doctor }) => {
   const [gender, setGender] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [patient, setPatient] = useState([]);
+  const [setPatient] = useState([]);
 
   const toggleForm = () => {
     setShowForm(!showForm);
