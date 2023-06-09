@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CreatePatient } from "../CreatePatient";
+import { CreatePatient } from "./CreatePatient";
 import { Box, Button } from "@chakra-ui/react";
 import { PatientList } from "./PatientList";
 

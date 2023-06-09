@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Flex, Box, Link, Image } from "@chakra-ui/react";
+import { Flex, Box, Link, Image, Text } from "@chakra-ui/react";
 
 export const Navbar = ({ doctorId }) => {
   return (
@@ -11,6 +11,11 @@ export const Navbar = ({ doctorId }) => {
          boxSize="100px" 
          mr={3} 
          />
+        <Text fontSize="2xl" fontWeight="bold" fontFamily="sans-serif">
+          Epichart
+        </Text>
+      </Box>
+      <Box display="flex" alignItems="center">
         <Link as={NavLink} exact to={`/doctor/${doctorId}`} mx={2} activeClassName="active-link">
           <h2>Home</h2>
         </Link>
@@ -24,4 +29,3 @@ export const Navbar = ({ doctorId }) => {
     </Flex>
   );
 };
-
