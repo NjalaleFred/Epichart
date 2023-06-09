@@ -17,7 +17,6 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const [setUser] = useState("");
   const [error, setError] = useState("");
 
   function handleLogin(e) {
@@ -34,7 +33,6 @@ export const Login = () => {
         if (data.error) {
           setError(data.error);
         } else {
-          setUser(data);
           history.push(`/doctor/${data.doctor_id}`);
         }
       })
